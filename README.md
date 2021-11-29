@@ -1,22 +1,11 @@
-# Factorio.ModTemplate
-Template for automated mod deployment using Github Actions when a tagged commit is pushed
+# Factorio: Inserter Cranes
+When creating train stations in factorio, I disliked the ammount of inserters/loaders required for every single cargo-wagon.
+This mod adds larger inserters called cranes with larger hand stack sizes and up-scaled throughput based on the area.
 
-## Inputs (Github secrets)
+Feel free to review and improve my code.
 
-### `factorio_user`
-
-**Required** User that will be used to authenticate to the Factorio mod-portal.
-
-### `factorio_password`
-
-**Required** Password that will be used to authenticate to the Factorio mod-portal.
+If you want me to support more inserters please provide a pull request
 
 ## Acknowledgements
 
-Actions based on:
-- [Roang-zero1 Actions](https://github.com/Roang-zero1)
-
-Which are  based on:
-- [Nexelas Mods](https://github.com/Nexela)
-- [GitHub Action to automatically publish to the Factorio mod portal](https://github.com/shanemadden/factorio-mod-portal-publish)
-- Shane Madden (Nymbia)
+- [Github actions based on Roang-zero1 Actions](https://github.com/Roang-zero1)
