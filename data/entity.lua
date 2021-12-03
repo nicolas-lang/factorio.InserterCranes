@@ -1,10 +1,10 @@
 ﻿local function scale_energy(energy, factor)
-	local value = tonumber (energy:match('%d+'))
-	local suffix = energy:match('%D+')
-	if value and type(value) == 'number' then
-		value = math.ceil(value / factor)
-		energy = string.format ('%d'..suffix, value)
-	end
+  local value = tonumber(energy:match("%d+"))
+  local suffix = energy:match("%D+")
+  if value and type(value) == "number" then
+    value = math.ceil(value * factor / 5) * 5
+    energy = string.format("%d" .. suffix, value)
+  end
   return energy
 end
 --
@@ -28,10 +28,9 @@ local function calculate_performance(entity, wide, forced_ips)
     rotation_speed = 1 / 60,
     extension_speed = 1 / 60,
     stack_size_bonus = 50,
-    energy_per_movement = entity.energy_per_movement
+    energy_per_movement = entity.energy_per_movement,
     energy_per_rotation = entity.energy_per_rotation
   }
-  
   local old_stack_size = 1 + (entity.stack_size_bonus or 0)
   if entity.stack then
     old_stack_size = old_stack_size + 11
@@ -52,14 +51,15 @@ local function calculate_performance(entity, wide, forced_ips)
   performance.rotation_speed = math.floor(10000 * performance._new_speed_sec / 60) / 10000
   performance.extension_speed = math.floor(10000 * performance._new_speed_sec / 60) / 10000
   performance.stack_size_bonus = math.max(0, new_stack_size_bonus - 1 - 2)
-  performance.energy_per_movement = scale_energy(performance.energy_per_movement,((wide and 15) or 5))
-  performance.energy_per_rotation = scale_energy(performance.energy_per_rotation,((wide and 15) or 5))
+  local energy_scale = (new_stack_size_bonus/max_stack_size_bonus) * (entity.rotation_speed/performance.rotation_speed) * ((wide and 15) or 5) * 1.75 
+  performance.energy_per_movement = scale_energy(performance.energy_per_movement, energy_scale)
+  performance.energy_per_rotation = scale_energy(performance.energy_per_rotation, energy_scale)
   return performance
 end
 
 local function make_crane_entity(entityName, newName, wide, forced_ips)
   local entity = util.table.deepcopy(data.raw["inserter"][entityName])
-  --log(serpent.block(entity))
+  log(serpent.block(entity))
   entity.name = newName
   if entity.filter_count and entity.filter_count < 5 then
     entity.filter_count = entity.filter_count + 1
@@ -78,8 +78,6 @@ local function make_crane_entity(entityName, newName, wide, forced_ips)
   entity.extension_speed = entity_performance.extension_speed
   entity.rotation_speed = entity_performance.extension_speed
   entity.stack_size_bonus = entity_performance.stack_size_bonus
-  entity.energy_per_movement = entity_performance.energy_per_movement
-  entity.energy_per_rotation = entity_performance.energy_per_rotation
   entity.energy_per_movement = entity_performance.energy_per_movement
   entity.energy_per_rotation = entity_performance.energy_per_rotation
 
