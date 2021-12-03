@@ -1,4 +1,10 @@
-﻿local function scale_energy(energy, scale)
+﻿local function scale_energy(energy, factor)
+	local value = tonumber (energy:match('%d+'))
+	local suffix = energy:match('%D+')
+	if value and type(value) == 'number' then
+		value = math.ceil(value / factor)
+		energy = string.format ('%d'..suffix, value)
+	end
   return energy
 end
 --
@@ -12,7 +18,7 @@ local function change_sprite_scale(sprite, scale)
     sprite.scale = scale
   end
   if sprite.hr_version then
-    sprite.hr_version = change_sprite_scale(sprite.hr_version, scale)
+    return change_sprite_scale(sprite.hr_version, scale)
   end
   return sprite
 end
@@ -22,9 +28,10 @@ local function calculate_performance(entity, wide, forced_ips)
     rotation_speed = 1 / 60,
     extension_speed = 1 / 60,
     stack_size_bonus = 50,
-    energy_per_movement = "30KJ",
-    energy_per_rotation = "30KJ"
+    energy_per_movement = entity.energy_per_movement
+    energy_per_rotation = entity.energy_per_rotation
   }
+  
   local old_stack_size = 1 + (entity.stack_size_bonus or 0)
   if entity.stack then
     old_stack_size = old_stack_size + 11
@@ -45,6 +52,8 @@ local function calculate_performance(entity, wide, forced_ips)
   performance.rotation_speed = math.floor(10000 * performance._new_speed_sec / 60) / 10000
   performance.extension_speed = math.floor(10000 * performance._new_speed_sec / 60) / 10000
   performance.stack_size_bonus = math.max(0, new_stack_size_bonus - 1 - 2)
+  performance.energy_per_movement = scale_energy(performance.energy_per_movement,((wide and 15) or 5))
+  performance.energy_per_rotation = scale_energy(performance.energy_per_rotation,((wide and 15) or 5))
   return performance
 end
 
@@ -71,32 +80,35 @@ local function make_crane_entity(entityName, newName, wide, forced_ips)
   entity.stack_size_bonus = entity_performance.stack_size_bonus
   entity.energy_per_movement = entity_performance.energy_per_movement
   entity.energy_per_rotation = entity_performance.energy_per_rotation
+  entity.energy_per_movement = entity_performance.energy_per_movement
+  entity.energy_per_rotation = entity_performance.energy_per_rotation
 
   entity.pickup_position = {0.5, -1.5}
   entity.insert_position = {-0.5, 1.7}
   --hand
+  entity.hand_size = 1.5
   entity.hand_base_picture = change_sprite_scale(entity.hand_base_picture, 2)
   entity.hand_base_shadow = change_sprite_scale(entity.hand_base_shadow, 2)
 
-  entity.hand_closed_picture = change_sprite_scale(entity.hand_closed_picture, 2)
-  entity.hand_closed_shadow = change_sprite_scale(entity.hand_closed_shadow, 2)
+  entity.hand_closed_picture = change_sprite_scale(entity.hand_closed_picture, 1.25)
+  entity.hand_closed_shadow = change_sprite_scale(entity.hand_closed_shadow, 1.25)
 
-  entity.hand_open_picture = change_sprite_scale(entity.hand_open_picture, 2)
-  entity.hand_open_shadow = change_sprite_scale(entity.hand_open_shadow, 2)
+  entity.hand_open_picture = change_sprite_scale(entity.hand_open_picture, 1.5)
+  entity.hand_open_shadow = change_sprite_scale(entity.hand_open_shadow, 1.5)
   --platform
   -- if individual picures are used there is no ground texture (yet)
-  entity.platform_picture.north = change_sprite_scale(entity.platform_picture.north, 2)
-  entity.platform_picture.east = change_sprite_scale(entity.platform_picture.east, 2)
-  entity.platform_picture.south = change_sprite_scale(entity.platform_picture.south, 2)
-  entity.platform_picture.west = change_sprite_scale(entity.platform_picture.west, 2)
+  entity.platform_picture.north = change_sprite_scale(entity.platform_picture.north, 1.8)
+  entity.platform_picture.east = change_sprite_scale(entity.platform_picture.east, 1.8)
+  entity.platform_picture.south = change_sprite_scale(entity.platform_picture.south, 1.8)
+  entity.platform_picture.west = change_sprite_scale(entity.platform_picture.west, 1.8)
 
   local newSheets = {}
   if entity.platform_picture.sheets then
     for _, v in pairs(entity.platform_picture.sheets) do
-      table.insert(newSheets, change_sprite_scale(v, 2))
+      table.insert(newSheets, change_sprite_scale(v, 1.8))
     end
   elseif entity.platform_picture.sheet then
-    newSheets = {change_sprite_scale(entity.platform_picture.sheet, 2)}
+    newSheets = {change_sprite_scale(entity.platform_picture.sheet, 1.8)}
     entity.platform_picture.sheet = nil
   end
 
