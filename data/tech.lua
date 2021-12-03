@@ -1,5 +1,5 @@
 local function get_parent_technology(recipe_name)
-	for name, technology in pairs(data.raw.technology) do
+	for _, technology in pairs(data.raw.technology) do
 		--log(technology.name)
 		if (technology.enabled or technology.enabled == nil) and technology.effects then
 			for _, effect in pairs(technology.effects) do

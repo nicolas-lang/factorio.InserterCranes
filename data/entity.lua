@@ -51,7 +51,7 @@ local function calculate_performance(entity, wide, forced_ips)
   performance.rotation_speed = math.floor(10000 * performance._new_speed_sec / 60) / 10000
   performance.extension_speed = math.floor(10000 * performance._new_speed_sec / 60) / 10000
   performance.stack_size_bonus = math.max(0, new_stack_size_bonus - 1 - 2)
-  local energy_scale = (new_stack_size_bonus/max_stack_size_bonus) * (entity.rotation_speed/performance.rotation_speed) * ((wide and 15) or 5) * 1.75 
+  local energy_scale = (new_stack_size_bonus/max_stack_size_bonus) * (entity.rotation_speed/performance.rotation_speed) * ((wide and 15) or 5) * 1.75
   performance.energy_per_movement = scale_energy(performance.energy_per_movement, energy_scale)
   performance.energy_per_rotation = scale_energy(performance.energy_per_rotation, energy_scale)
   return performance
