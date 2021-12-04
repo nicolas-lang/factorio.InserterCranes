@@ -13,12 +13,12 @@ end
 local function make_layered_icon(base, wide)
 	local icon_size = base.icon_size
 	local icon_layers  = {}
-	local icon = "__nco-InserterCranes__/graphics/icon_texture_gray.png"
+	local icon_file = "__nco-InserterCranes__/graphics/icon_texture_gray.png"
 	if wide then
-		icon = "__nco-InserterCranes__/graphics/icon_texture.png"
+		icon_file = "__nco-InserterCranes__/graphics/icon_texture.png"
 	end
 	table.insert(icon_layers,{
-		icon = icon,
+		icon = icon_file,
 		icon_size = 256,
 	})
 	if base.icon then
