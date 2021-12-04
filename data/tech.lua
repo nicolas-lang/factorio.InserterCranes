@@ -1,3 +1,5 @@
+local make_layered_icon = require("icon")
+
 local function get_parent_technology(recipe_name)
 	for _, technology in pairs(data.raw.technology) do
 		--log(technology.name)
@@ -22,6 +24,7 @@ local function setup_crane_tech(itemName, newName)
 		if not technology then
 			technology = util.table.deepcopy(data.raw["technology"][parent_tech_name])
 			technology.name = tech_name
+			make_layered_icon(technology,true)
 			technology.effects = {}
 			technology.unit.count = technology.unit.count * 2
 			technology.prerequisites = {
