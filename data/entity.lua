@@ -41,7 +41,7 @@ local function calculate_performance(entity, wide, forced_ips)
   log("entity.rotation_speed_tick: " .. tostring(entity.rotation_speed))
   log("rotation_speed_sec: " .. tostring(entity.rotation_speed * 60))
   performance._ips_old = entity.rotation_speed * 60 * old_stack_size
-  performance._ips_new = forced_ips or (((wide and 15) or 5) * performance._ips_old)
+  performance._ips_new = forced_ips or (((wide and 16) or 4.5) * performance._ips_old)
   local max_stack_size_bonus = 250
   if settings.startup["max_stack_size_bonus"] and settings.startup["max_stack_size_bonus"].value then
     max_stack_size_bonus = tonumber(settings.startup["max_stack_size_bonus"].value)
@@ -51,7 +51,7 @@ local function calculate_performance(entity, wide, forced_ips)
   performance.rotation_speed = math.floor(10000 * performance._new_speed_sec / 60) / 10000
   performance.extension_speed = math.floor(10000 * performance._new_speed_sec / 60) / 10000
   performance.stack_size_bonus = math.max(0, new_stack_size_bonus - 1 - 2)
-  local energy_scale = (new_stack_size_bonus/max_stack_size_bonus) * (entity.rotation_speed/performance.rotation_speed) * ((wide and 15) or 5) * 1.75
+  local energy_scale = (new_stack_size_bonus/max_stack_size_bonus) * (entity.rotation_speed/performance.rotation_speed) * ((wide and 16) or 4.5) * 1.75
   performance.energy_per_movement = scale_energy(performance.energy_per_movement, energy_scale)
   performance.energy_per_rotation = scale_energy(performance.energy_per_rotation, energy_scale)
   return performance
@@ -59,7 +59,7 @@ end
 
 local function make_crane_entity(entityName, newName, wide, forced_ips)
   local entity = util.table.deepcopy(data.raw["inserter"][entityName])
-  log(serpent.block(entity))
+  --log(serpent.block(entity))
   entity.name = newName
   if entity.filter_count and entity.filter_count < 5 then
     entity.filter_count = entity.filter_count + 1
