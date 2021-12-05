@@ -1,7 +1,7 @@
 local data = _G.data
 ------------------------------------------------------------------------------------------------------
 if not data.raw["item-subgroup"]["inserter-cranes"] then
-	log(serpent.block(data.raw["item-subgroup"]["inserter"]))
+	--log(serpent.block(data.raw["item-subgroup"]["inserter"]))
 	data:extend(
 		{
 			{

@@ -37,9 +37,9 @@ local function calculate_performance(entity, wide, forced_ips)
   else
     old_stack_size = old_stack_size + 2
   end
-  log("old_stack_size: " .. tostring(old_stack_size))
-  log("entity.rotation_speed_tick: " .. tostring(entity.rotation_speed))
-  log("rotation_speed_sec: " .. tostring(entity.rotation_speed * 60))
+  --log("old_stack_size: " .. tostring(old_stack_size))
+  --log("entity.rotation_speed_tick: " .. tostring(entity.rotation_speed))
+  --log("rotation_speed_sec: " .. tostring(entity.rotation_speed * 60))
   performance._ips_old = entity.rotation_speed * 60 * old_stack_size
   performance._ips_new = forced_ips or (((wide and 16) or 4.5) * performance._ips_old)
   local max_stack_size_bonus = 250
