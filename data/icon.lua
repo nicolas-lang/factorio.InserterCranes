@@ -1,7 +1,7 @@
 ﻿local function make_icon_layer(base,icon_size)
 	local layer = {
 		icon = base.icon,
-		icon_size = icon_size or base.icon_size,
+		icon_size = base.icon_size or icon_size,
 		scale = base.scale,
 		shift = base.shift,
 		icon_mipmaps = base.icon_mipmaps,
