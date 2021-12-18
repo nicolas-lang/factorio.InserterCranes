@@ -17,7 +17,11 @@ local function make_crane_recipe(recipeName, newName, wide)
 	recipe.subgroup = "inserter-cranes"
 	local ingredients = {}
 	for _, v in pairs(recipe.ingredients) do
-		table.insert(ingredients, {v[1], math.ceil(v[2] * scale)})
+		local item_name = v["name"] or v[1]
+		local amount = v["amount"] or v[2]
+		--log(item_name)
+		--log(amount)
+		table.insert(ingredients, {name= item_name, amount = math.ceil(amount * scale), type = "item"})
 	end
 	recipe.ingredients = ingredients
 	--log("recipe"..serpent.block(recipe))
