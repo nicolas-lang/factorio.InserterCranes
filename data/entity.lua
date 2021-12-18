@@ -83,6 +83,7 @@ local function make_crane_entity(entityName, newName, wide, forced_ips)
   local entity_performance = calculate_performance(entity, wide, forced_ips)
   log(newName .. "-performance: " .. serpent.block(entity_performance))
   entity.stack = false
+  entity.next_upgrade = nil
   entity.extension_speed = entity_performance.extension_speed
   entity.rotation_speed = entity_performance.extension_speed
   entity.stack_size_bonus = entity_performance.stack_size_bonus
@@ -107,7 +108,7 @@ local function make_crane_entity(entityName, newName, wide, forced_ips)
   entity.platform_picture.east = change_sprite_scale(entity.platform_picture.east, 1.8)
   entity.platform_picture.south = change_sprite_scale(entity.platform_picture.south, 1.8)
   entity.platform_picture.west = change_sprite_scale(entity.platform_picture.west, 1.8)
-
+  entity.localised_name = nil
   local newSheets = {}
   if entity.platform_picture.sheets then
     for _, v in pairs(entity.platform_picture.sheets) do
