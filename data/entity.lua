@@ -1,7 +1,15 @@
 ﻿local function scale_energy(energy, factor)
-  local value = tonumber(energy:match("%d+"))
-  local suffix = energy:match("%D+")
+  local value = tonumber(energy:match("[%d\\.]+"))
+  local suffix = energy:match("[%l%u]+")
   if value and type(value) == "number" then
+    if suffix == "kJ" then
+       suffix = "J"
+       factor = factor * 1000
+    end
+    if suffix == "kW" then
+       suffix = "W"
+       factor = factor * 1000
+    end
     value = math.ceil(value * factor / 5) * 5
     energy = string.format("%d" .. suffix, value)
   end
