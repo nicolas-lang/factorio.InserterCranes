@@ -90,7 +90,7 @@ local function make_crane_entity(entityName, newName, wide, forced_ips)
   entity.energy_per_movement = entity_performance.energy_per_movement
   entity.energy_per_rotation = entity_performance.energy_per_rotation
 
-  entity.pickup_position = {0.5, -1.5}
+  entity.pickup_position = {0.5, -1.7}
   entity.insert_position = {-0.5, 1.7}
   --hand
   entity.hand_size = 1.5
