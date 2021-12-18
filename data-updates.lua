@@ -1,5 +1,4 @@
 --log("data")
-require("data.subgroup")
 local make_crane_entity = require("data.entity")
 local make_crane_item = require("data.item")
 local make_crane_recipe = require("data.recipe")
