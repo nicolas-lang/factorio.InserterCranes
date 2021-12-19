@@ -31,12 +31,12 @@ if mods["boblogistics"] then
 	register_crane("red-stack-filter-inserter", "nco-red-wide-filter-crane", true, nil)
 	register_crane("red-stack-inserter", "nco-red-crane", false, nil)
 	register_crane("red-stack-filter-inserter", "nco-red-filter-crane", false, nil)
-	
+
 	register_crane("turbo-stack-inserter", "nco-wide-turbo-crane", true, nil)
 	register_crane("turbo-stack-filter-inserter", "nco-wide-turbo-filter-crane", true, nil)
 	register_crane("turbo-stack-inserter", "nco-turbo-crane", false, nil)
 	register_crane("turbo-stack-filter-inserter", "nco-turbo-filter-crane", false, nil)
-	
+
 	register_crane("express-stack-inserter", "nco-wide-express-crane", true, nil)
 	register_crane("express-stack-filter-inserter", "nco-wide-express-filter-crane", true, nil)
 	register_crane("express-stack-inserter", "nco-express-crane", true, nil)
