@@ -19,10 +19,8 @@ if mods["bobinserters"] then
 	speed_limit_wide = nil
 end
 
---wide (6x2)
 register_crane("stack-inserter", "nco-wide-crane", true, speed_limit_wide)
 register_crane("stack-filter-inserter", "nco-wide-filter-crane", true, speed_limit_wide)
---normal (2x2)
 register_crane("stack-inserter", "nco-crane", false, speed_limit)
 register_crane("stack-filter-inserter", "nco-filter-crane", false, speed_limit)
 
