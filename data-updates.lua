@@ -1,4 +1,4 @@
---log("data")
+--log("data-updates")
 local make_crane_entity = require("data.entity")
 local make_crane_item = require("data.item")
 local make_crane_recipe = require("data.recipe")
@@ -10,13 +10,21 @@ local function register_crane(entityName, newName, wide, forced_ips)
 	make_crane_recipe(entityName, newName, wide)
 	setup_crane_tech(entityName, newName)
 end
---vanilla
+--vanilla inserters
+local speed_limit = 108
+local speed_limit_wide = 324
+if mods["bobinserters"] then
+	--if we can set dropoff points 2 row train station become possible for every inserter
+	speed_limit = nil
+	speed_limit_wide = nil
+end
+
 --wide (6x2)
-register_crane("stack-inserter", "nco-wide-crane", true, 324) -- ips compareable to 9 inserters
-register_crane("stack-filter-inserter", "nco-wide-filter-crane", true, 324) -- ips compareable to 9 inserters
+register_crane("stack-inserter", "nco-wide-crane", true, speed_limit_wide)
+register_crane("stack-filter-inserter", "nco-wide-filter-crane", true, speed_limit_wide)
 --normal (2x2)
-register_crane("stack-inserter", "nco-crane", false, 108) -- ips compareable to 3 inserters
-register_crane("stack-filter-inserter", "nco-filter-crane", false, 108) -- ips compareable to 3 inserters
+register_crane("stack-inserter", "nco-crane", false, speed_limit)
+register_crane("stack-filter-inserter", "nco-filter-crane", false, speed_limit)
 
 --krastorio 2
 if mods["Krastorio2"] then
