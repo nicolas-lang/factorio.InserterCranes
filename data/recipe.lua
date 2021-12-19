@@ -16,7 +16,15 @@ local function make_crane_recipe(recipeName, newName, wide)
 	recipe.enabled = false
 	recipe.subgroup = "inserter-cranes"
 	local ingredients = {}
-	for _, v in pairs(recipe.ingredients) do
+	local base_ingredients = recipe.ingredients
+	if not base_ingredients then
+		if recipe.normal then
+			base_ingredients = recipe.normal.ingredients
+		elseif recipe.expensive then
+			base_ingredients = recipe.expensive.ingredients
+		end
+	end
+	for _, v in pairs(base_ingredients) do
 		local item_name = v["name"] or v[1]
 		local amount = v["amount"] or v[2]
 		--log(item_name)
@@ -24,6 +32,8 @@ local function make_crane_recipe(recipeName, newName, wide)
 		table.insert(ingredients, {name= item_name, amount = math.ceil(amount * scale), type = "item"})
 	end
 	recipe.ingredients = ingredients
+	recipe.normal = nil
+	recipe.expensive = nil
 	--log("recipe"..serpent.block(recipe))
 	data:extend({recipe})
 	-- add k2 crushing recipe
@@ -48,8 +58,8 @@ local function make_crane_recipe(recipeName, newName, wide)
 			},
 			results = {}
 		}
-		for _, v in pairs(recipe.ingredients) do
-			table.insert(crushing_recipe.results, {type = "item", name = v[1],  amount = v[2], probability = 0.75})
+		for _, v in pairs(base_ingredients) do
+			table.insert(crushing_recipe.results, {type = "item", name = v[1],  amount = v[2], probability = 0.65})
 		end
 		data:extend({crushing_recipe})
 	end
