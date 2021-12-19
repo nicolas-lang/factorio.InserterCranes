@@ -11,6 +11,26 @@ local function blacklist_inserters()
 			"nco-filter-crane"
 		}
 	)
+	if script.active_mods["boblogistics"] then
+		remote.call(
+			"bobinserters",
+			"blacklist_inserters",
+			{
+				"nco-red-wide-crane",
+				"nco-red-wide-filter-crane",
+				"nco-red-crane",
+				"nco-red-filter-crane",
+				"nco-wide-turbo-crane",
+				"nco-wide-turbo-filter-crane",
+				"nco-turbo-crane",
+				"nco-turbo-filter-crane",
+				"nco-wide-express-crane",
+				"nco-wide-express-filter-crane",
+				"nco-express-crane",
+				"nco-express-filter-crane"
+			}
+		)
+	end
 	if script.active_mods["Krastorio2"] then
 		remote.call(
 			"bobinserters",

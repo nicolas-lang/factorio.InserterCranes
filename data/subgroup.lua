@@ -1,9 +1,12 @@
 local data = _G.data
 ------------------------------------------------------------------------------------------------------
 if not data.raw["item-subgroup"]["inserter-cranes"] then
-	--log(serpent.block(data.raw["item-subgroup"]["inserter"]))
 	local group = "logistics"
 	local order = "c"
+	if mods["boblogistics"] then
+		group = "bob-logistics",
+		order = "c-z-a"
+	end
 	data:extend(
 		{
 			{

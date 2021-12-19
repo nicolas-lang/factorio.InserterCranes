@@ -10,6 +10,7 @@ local function register_crane(entityName, newName, wide, forced_ips)
 	make_crane_recipe(entityName, newName, wide)
 	setup_crane_tech(entityName, newName)
 end
+
 --vanilla inserters
 local speed_limit = 108
 local speed_limit_wide = 324
@@ -23,6 +24,24 @@ register_crane("stack-inserter", "nco-wide-crane", true, speed_limit_wide)
 register_crane("stack-filter-inserter", "nco-wide-filter-crane", true, speed_limit_wide)
 register_crane("stack-inserter", "nco-crane", false, speed_limit)
 register_crane("stack-filter-inserter", "nco-filter-crane", false, speed_limit)
+
+-- bob's logistics
+if mods["boblogistics"] then
+	register_crane("red-stack-inserter", "nco-red-wide-crane", true, nil)
+	register_crane("red-stack-filter-inserter", "nco-red-wide-filter-crane", true, nil)
+	register_crane("red-stack-inserter", "nco-red-crane", false, nil)
+	register_crane("red-stack-filter-inserter", "nco-red-filter-crane", false, nil)
+	
+	register_crane("turbo-stack-inserter", "nco-wide-turbo-crane", true, nil)
+	register_crane("turbo-stack-filter-inserter", "nco-wide-turbo-filter-crane", true, nil)
+	register_crane("turbo-stack-inserter", "nco-turbo-crane", false, nil)
+	register_crane("turbo-stack-filter-inserter", "nco-turbo-filter-crane", false, nil)
+	
+	register_crane("express-stack-inserter", "nco-wide-express-crane", true, nil)
+	register_crane("express-stack-filter-inserter", "nco-wide-express-filter-crane", true, nil)
+	register_crane("express-stack-inserter", "nco-express-crane", true, nil)
+	register_crane("express-stack-filter-inserter", "nco-express-filter-crane", true, nil)
+end
 
 --krastorio 2
 if mods["Krastorio2"] then
