@@ -58,8 +58,8 @@ local function make_crane_recipe(recipeName, newName, wide)
 			},
 			results = {}
 		}
-		for _, v in pairs(base_ingredients) do
-			table.insert(crushing_recipe.results, {type = "item", name = v[1],  amount = v[2], probability = 0.65})
+		for _, v in pairs(ingredients) do
+			table.insert(crushing_recipe.results, {type = "item", name = v["name"],  amount = v["amount"], probability = 0.65})
 		end
 		data:extend({crushing_recipe})
 	end
