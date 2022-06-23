@@ -10,6 +10,10 @@ When creating train stations in factorio, I disliked the amount of inserters/loa
 - I would appreciate if someone would make a nice mod icon
 - Please also check [my other mods](https://mods.factorio.com/user/karoschel)
 
+## Translation
+
+You are welcome to help with localization, please use [this Crowdin project](https://crowdin.com/project/factorio-mods-localization). You can find more details [here](https://github.com/dima74/factorio-mods-localization#how-to-translate-using-crowdin).
+
 ## Acknowledgements
 
 - [Github actions based on Roang-zero1 Actions](https://github.com/Roang-zero1)
