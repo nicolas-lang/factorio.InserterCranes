@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.7
+Date: 2022-06-23
+  Changes:
+    - Added crowdin for collaborative/international translations
+    - Added 'ru' translation provided by Eldrinn-Elantey
+---------------------------------------------------------------------------------------------------
 Version: 0.0.6
 Date: 2022-02-03
   Bugfixes:
