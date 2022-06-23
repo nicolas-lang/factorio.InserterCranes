@@ -1,4 +1,6 @@
-﻿local function scale_energy(energy, factor)
+﻿local util = require("util")
+
+local function scale_energy(energy, factor)
   local value = tonumber(energy:match("[%d\\.]+"))
   local suffix = energy:match("[%l%u]+")
   if value and type(value) == "number" then

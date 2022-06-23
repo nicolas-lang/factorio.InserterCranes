@@ -1,3 +1,5 @@
+local util = require("util")
+
 local make_layered_icon = require("icon")
 
 local function make_crane_recipe(recipeName, newName, wide)

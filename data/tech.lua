@@ -1,3 +1,5 @@
+local util = require("util")
+
 local make_layered_icon = require("icon")
 
 local function get_parent_technology(recipe_name)
