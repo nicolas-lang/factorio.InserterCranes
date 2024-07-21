@@ -39,7 +39,7 @@ if mods["boblogistics"] then
 
 	register_crane("express-stack-inserter", "nco-wide-express-crane", true, nil)
 	register_crane("express-stack-filter-inserter", "nco-wide-express-filter-crane", true, nil)
-	register_crane("express-stack-inserter", "nco-express-crane", true, nil)
+	register_crane("express-stack-inserter", "nco-express-crane", false, nil)
 	register_crane("express-stack-filter-inserter", "nco-express-filter-crane", true, nil)
 end
 
