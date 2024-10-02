@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.8
+Date: 2024-10-02
+  Updated-by:
+    - grimvoodoo
+  Bugfixes:
+    - Fixed bug where the express-crane and wide-express-crane recipe ingredients were the same, and both produced the wide express crane.
+---------------------------------------------------------------------------------------------------
 Version: 0.0.7
 Date: 2022-06-23
   Changes:
